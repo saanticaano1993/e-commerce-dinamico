@@ -14,6 +14,7 @@ btnCart.addEventListener('click', () => {
     //.classList.toggle y activamos el interruptor
     //en nuestra doble clase previamente asignada con 
     //el display none en este caso Hidden-cart
+
     
     containerCartProductos.classList.toggle('hidden-cart');
 
@@ -97,12 +98,23 @@ productsList.addEventListener('click',e =>{
 
         const product = e.target.parentElement;
 
-        //creamos objeto de producto 
+        //guardamos al elemento abuelo en una variable
+        const parentProduct = product.parentElement;
+        //accedemos al primer hijo figure
+        const parentFigure = parentProduct.children[0];
+        //accedemos al primer hijo de figure que es img y sacamos el contenid de src
+        //para almacenarlo en una variable
+        //para  parentProduct.children[0].src
+        const img = parentFigure.firstElementChild.src;
+    
+
+        //creamos objeto de producto añadiendo también la imagen 
 
         const infoProduct = {
             quantity: 1,
             title: product.querySelector('h2').textContent,
             price: product.querySelector('p').textContent,
+            imagen: img,
         }
 
         //cuidado con el simbolo del euro para luego poder operar 
@@ -153,14 +165,7 @@ productsList.addEventListener('click',e =>{
         // -----Sacar Src Img para mostrarla en el carrito----- 
         //accedemos al elemento abuelo del boton que contiene a product y la imagen
         console.log(product.parentElement);
-        //guardamos al elemento abuelo en una variable
-        const parentProduct = product.parentElement;
-        //accedemos al primer hijo figure
-        const parentFigure = parentProduct.children[0];
-        //accedemos al primer hijo de figure que es img y sacamos el contenid de src
-        //para almacenarlo en una variable
-        //para  parentProduct.children[0].src
-        const img = parentFigure.firstElementChild.src;
+        
         
         
         console.log(img);
@@ -177,7 +182,7 @@ rowProduct.addEventListener('click' ,(e) => {
         //nos dirigimos al elemento padre y guardamos el titulo lo logico es tener un id determinado
         const producto = e.target.parentElement;
         //aplicamos .trim() para ocultar espacios en caso de que existan
-        //si tenemos espacios no nos podra comparar correctamente en la funcion.filters
+        //si tenemos espacios no nos podra  comparar correctamente en la funcion.filters
         const n_product = producto.querySelector('p').textContent.trim();
         console.log(n_product);
         console.log(n_product.length);
